@@ -31,8 +31,8 @@ else:
     # Initialize session state
     if 'history' not in st.session_state:
         st.session_state.history = []
-    if 'welcomed' not in st.session_state:
-        st.session_state.welcomed = False
+    #if 'welcomed' not in st.session_state:
+     #   st.session_state.welcomed = False
 
     if not st.session_state.welcomed:
         # Welcome prompt input
@@ -43,7 +43,7 @@ else:
             
             st.write(f"**User😍:** {welcome_prompt}")
             st.write(f"**Chinua's bot😎:** {welcome_response}")
-            #st.session_state.welcomed = True
+            st.session_state.welcomed = True
     else:
         # Display conversation history
         for entry in st.session_state.history:
