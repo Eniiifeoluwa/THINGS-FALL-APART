@@ -11,7 +11,7 @@ def download_model(model_url, zip_filename):
         st.write("Download complete.")
         
         st.write("Unzipping model...")
-        os.system(f"unzip {zip_filename} -d fine-tuned-gpt2i")
+        os.system(f"unzip {zip_filename} -d fine-tuned-gpt2ii")
         st.write("Unzip complete.")
     else:
         st.write("Model available to use")
@@ -24,7 +24,7 @@ zip_filename = "fine-tuned-gpt2i.zip"
 download_model(model_url, zip_filename)
 
 # Load the model and tokenizer
-model_name = "fine-tuned-gpt2i"
+model_name = "fine-tuned-gpt2ii"
 if not os.path.exists(model_name):
     st.write(f"Model directory {model_name} does not exist. Please check the download and unzip process.")
 else:
