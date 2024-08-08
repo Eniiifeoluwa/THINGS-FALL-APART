@@ -7,15 +7,14 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, pipeline
 # Function to download and unzip model
 def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
-        st.write("Downloading model...")
+        #st.write("Downloading model...")
         gdown.download(model_url, zip_filename, quiet=False)
-        st.write("Download complete.")
+        #st.write("Download complete.")
         
-        st.write("Unzipping model...")
+        #st.write("Unzipping model...")
         shutil.unpack_archive(zip_filename, "chinua-gpt2")
-        st.write("Unzip complete.")
-    else:
-        st.write("Model available to use")
+        #st.write("Unzip complete.")
+        #st.write("Model available to use")
 
 # Define model URL and file names
 model_url = "https://drive.google.com/uc?id=1-Ndi-ycSXouwlspH7zagfbGpTA2oaRLb"  # Corrected to direct download link
@@ -27,13 +26,13 @@ download_model(model_url, zip_filename)
 # Check if the model directory exists
 model_name = "chinua-gpt2"
 if not os.path.exists(model_name):
-    st.write(f"Model directory {model_name} does not exist. Please check the download and unzip process.")
-else:
-    st.write(f"Model directory {model_name} exists. Loading model...")
+    #st.write(f"Model directory {model_name} does not exist. Please check the download and unzip process.")
+#else:
+ #   st.write(f"Model directory {model_name} exists. Loading model...")
 
-    # Print contents of the model directory for debugging
+  #  # Print contents of the model directory for debugging
     st.write("Contents of model directory:")
-    st.write(os.listdir(model_name))
+  #  st.write(os.listdir(model_name))
 
     # Load the model and tokenizer
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
