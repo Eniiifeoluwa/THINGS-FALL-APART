@@ -43,11 +43,11 @@ else:
             st.session_state.welcomed = True
             st.write(f"**User😍:** {welcome_prompt}")
             st.write(f"**Chinua's bot😎:** {welcome_response}")
-    #else:
+    else:
         # Display conversation history
-     #   for entry in st.session_state.history:
-      #      st.write(f"**User😍:** {entry['question']}")
-       #     st.write(f"**Chinua's bot😎:** {entry['answer']}")
+        for entry in st.session_state.history:
+            st.write(f"**User😍:** {entry['question']}")
+            st.write(f"**Chinua's bot😎:** {entry['answer']}")
 
         # Input prompt
         prompt = st.text_input("Enter your prompt:")
