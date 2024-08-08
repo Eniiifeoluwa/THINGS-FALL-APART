@@ -14,7 +14,7 @@ def download_model(model_url, zip_filename):
 model_url = "https://drive.google.com/uc?id=1-Ndi-ycSXouwlspH7zagfbGpTA2oaRLb"  
 zip_filename = "chinua-gpt2.zip"
 
-
+# Download and unzip the model
 download_model(model_url, zip_filename)
 
 # Load the model and tokenizer
@@ -28,40 +28,41 @@ else:
 
     st.title("GPT-2 Model for Chinua Achebe: THINGS FALL APART")
 
-
+    # Initialize session state
     if 'history' not in st.session_state:
         st.session_state.history = []
-        
     if 'welcomed' not in st.session_state:
         st.session_state.welcomed = False
 
     if not st.session_state.welcomed:
-        welcome_prompt = st.text_input("Say 'hello' to start the conversation:")
+        # Welcome prompt input
+        welcome_prompt = st.text_input("Say 'hello' to start the conversation:", key="welcome_prompt")
         if welcome_prompt.lower() == 'hello':
             welcome_response = "Welcome! I am here to discuss 'Things Fall Apart' by Chinua Achebe with you. How can I assist you today?"
             st.session_state.history.append({'question': welcome_prompt, 'answer': welcome_response})
             st.session_state.welcomed = True
-
+            st.write(f"**User😍:** {welcome_prompt}")
+            st.write(f"**Chinua's bot😎:** {welcome_response}")
     else:
         # Display conversation history
         for entry in st.session_state.history:
             st.write(f"**User😍:** {entry['question']}")
             st.write(f"**Chinua's bot😎:** {entry['answer']}")
 
-        # Input prompt
-        prompt = st.text_input("Enter your prompt:")
+        # Prompt input for conversation
+        prompt = st.text_input("Enter your prompt:", key="conversation_prompt")
 
         if prompt:
             # Generate response
             generated_text = text_generator(
                 prompt,
-                max_length=100,  # Adjust as needed
-                min_length=10,  # Adjust as needed
+                max_length=100,
+                min_length=10,
                 num_return_sequences=1,
                 eos_token_id=tokenizer.eos_token_id,
                 pad_token_id=tokenizer.pad_token_id,
                 no_repeat_ngram_size=2,
-                temperature=0.7,  
+                temperature=0.7,
                 num_beams=5,
             )[0]['generated_text']
             
