@@ -43,7 +43,7 @@ else:
             
             st.write(f"**User😍:** {welcome_prompt}")
             st.write(f"**Chinua's bot😎:** {welcome_response}")
-            st.session_state.welcomed = True
+            #st.session_state.welcomed = True
     else:
         # Display conversation history
         for entry in st.session_state.history:
