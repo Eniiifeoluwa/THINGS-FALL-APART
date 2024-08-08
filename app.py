@@ -11,20 +11,20 @@ def download_model(model_url, zip_filename):
         st.write("Download complete.")
         
         st.write("Unzipping model...")
-        os.system(f"unzip {zip_filename} -d fine-tuned-gpt2ii")
+        os.system(f"unzip {zip_filename} -d chinua-gpt2")
         st.write("Unzip complete.")
     else:
         st.write("Model available to use")
 
 # Define model URL and file names
-model_url = "https://drive.google.com/file/d/1-WS5po4ugDuGpIFmLNOZFmC03TaG9Zx-"  # Converted to direct download link
-zip_filename = "fine-tuned-gpt2i.zip"
+model_url = "https://drive.google.com/file/d/1-Ndi-ycSXouwlspH7zagfbGpTA2oaRLb"  # Converted to direct download link
+zip_filename = "chinua-gpt2.zip"
 
 # Download and unzip the model
 download_model(model_url, zip_filename)
 
 # Load the model and tokenizer
-model_name = "fine-tuned-gpt2ii"
+model_name = "chinua-gpt2"
 if not os.path.exists(model_name):
     st.write(f"Model directory {model_name} does not exist. Please check the download and unzip process.")
 else:
