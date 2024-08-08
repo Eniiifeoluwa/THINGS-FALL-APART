@@ -50,7 +50,7 @@ else:
             num_return_sequences=1,
             eos_token_id=tokenizer.eos_token_id,
             pad_token_id=tokenizer.pad_token_id,
-            no_repeat_ngram_size=2
+            no_repeat_ngram_size=2,
             temperature=0.7,  
             num_beams=5,
 
