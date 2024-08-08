@@ -60,5 +60,5 @@ else:
         st.session_state.history.append({'question': prompt, 'answer': generated_text})
         
         # Display updated conversation history
-        st.write("**Q:**", prompt)
-        st.write("**A:**", generated_text)
+        st.write("**User😍:**", prompt)
+        st.write("**Chinua's bot😎:**", generated_text)
