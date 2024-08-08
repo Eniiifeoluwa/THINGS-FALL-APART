@@ -40,9 +40,10 @@ else:
         if welcome_prompt.lower() == 'hello':
             welcome_response = "Welcome! I am here to discuss 'Things Fall Apart' by Chinua Achebe with you. How can I assist you today?"
             st.session_state.history.append({'question': welcome_prompt, 'answer': welcome_response})
-            st.session_state.welcomed = True
+            
             st.write(f"**User😍:** {welcome_prompt}")
             st.write(f"**Chinua's bot😎:** {welcome_response}")
+            st.session_state.welcomed = True
     else:
         # Display conversation history
         for entry in st.session_state.history:
