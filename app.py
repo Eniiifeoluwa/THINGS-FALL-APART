@@ -11,7 +11,7 @@ def download_model(model_url, zip_filename):
         st.write("Download complete.")
         
         st.write("Unzipping model...")
-        os.system(f"unzip {zip_filename} -d chinua-gpt2")
+        os.system(f"unzip {zip_filename} chinua-gpt2")
         st.write("Unzip complete.")
     else:
         st.write("Model available to use")
