@@ -2,3 +2,5 @@ streamlit
 transformers
 torch
 gdown
+langchain
+langchain_huggingface
