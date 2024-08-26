@@ -10,9 +10,12 @@ def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
         shutil.unpack_archive(zip_filename, "chinua-gpt")
+
+# Define model URL and file names
 model_url = "https://drive.google.com/uc?id=1bfBeR4C6kUfBvW6JMTTwsEoF3FEyJeCJ"
 zip_filename = "chinua-gpt.zip"
 
+# Download and unzip the model
 download_model(model_url, zip_filename)
 
 model_name = "chinua-gpt"
@@ -22,14 +25,13 @@ else:
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
     model = GPT2LMHeadModel.from_pretrained(model_name)
     
-    text_generator = pipeline('text-generation', model=model, tokenizer=tokenizer)
-    
+    text_generation_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer)
+
     prompt_template = PromptTemplate(
         input_variables=["context", "question"],
         template="You are a knowledgeable historian providing a detailed explanation. Context: {context}\nQuestion: {question}\nAnswer:"
     )
     
-    text_generation_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0)
     llm = HuggingFacePipeline(pipeline=text_generation_pipeline)
     chain = LLMChain(llm=llm, prompt=prompt_template)
 
