@@ -11,11 +11,9 @@ def download_model(model_url, zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
         shutil.unpack_archive(zip_filename, "chinua-gpt")
 
-# Define model URL and file names
 model_url = "https://drive.google.com/uc?id=1bfBeR4C6kUfBvW6JMTTwsEoF3FEyJeCJ"
 zip_filename = "chinua-gpt.zip"
 
-# Download and unzip the model
 download_model(model_url, zip_filename)
 
 model_name = "chinua-gpt"
@@ -24,14 +22,14 @@ if not os.path.exists(model_name):
 else:
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
     model = GPT2LMHeadModel.from_pretrained(model_name)
-    
+
     text_generation_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer)
 
     prompt_template = PromptTemplate(
         input_variables=["context", "question"],
         template="You are a knowledgeable historian providing a detailed explanation. Context: {context}\nQuestion: {question}\nAnswer:"
     )
-    
+
     llm = HuggingFacePipeline(pipeline=text_generation_pipeline)
     chain = LLMChain(llm=llm, prompt=prompt_template)
 
@@ -56,11 +54,12 @@ else:
             st.write(f"**Chinua's bot😎:** {entry['answer']}")
 
         prompt = st.text_input("Enter your prompt:", key="conversation_prompt")
+        context = st.text_input("Provide context:", key="context_input")
 
-        if prompt:
-            context = "The great wrestler in town"  # Adjust the context as needed
+        if prompt and context:
             result = chain.run(context=context, question=prompt)
+            answer = result.get("answer", result)
             
-            st.session_state.history.append({'question': prompt, 'answer': result})
+            st.session_state.history.append({'question': prompt, 'answer': answer})
             st.write("**User😍:**", prompt)
-            st.write("**Chinua's bot😎:**", result)
+            st.write("**Chinua's bot😎:**", answer)
