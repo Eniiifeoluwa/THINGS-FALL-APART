@@ -58,7 +58,7 @@ else:
 
         if prompt and context:
             result = chain.run(context=context, question=prompt)
-            answer = result.get("answer", result)
+            answer = result.split("Answer:")[-1].strip()  # Extract answer from the result
             
             st.session_state.history.append({'question': prompt, 'answer': answer})
             st.write("**User😍:**", prompt)
