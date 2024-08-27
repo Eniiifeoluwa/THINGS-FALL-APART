@@ -25,8 +25,8 @@ else:
     text_generation_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer)
 
     prompt_template = PromptTemplate(
-        input_variables=["context", "question"],
-        template="You are a knowledgeable historian providing a detailed explanation. Context: {context}\nQuestion: {question}\nAnswer:"
+        input_variables=["question"],
+        template="You are a knowledgeable historian providing a detailed explanation. Question: {question}\nAnswer:"
     )
 
     llm = HuggingFacePipeline(pipeline=text_generation_pipeline)
@@ -53,10 +53,9 @@ else:
             st.write(f"**Chinua's bot😎:** {entry['answer']}")
 
         prompt = st.text_input("Enter your prompt:", key="conversation_prompt")
-        context = st.text_input("Provide context:", key="context_input")
 
-        if prompt and context:
-            result = chain.run(context=context, question=prompt)
+        if prompt:
+            result = chain.run(question=prompt)
             answer = result.split("Answer:")[-1].strip()  # Extract answer from the result
             
             st.session_state.history.append({'question': prompt, 'answer': answer})
