@@ -47,7 +47,7 @@ else:
         if prompt:
             result = text_generation_pipeline(
                 f"You are a knowledgeable historian providing a detailed explanation. Question: {prompt}\nAnswer:", 
-                max_length=150, 
+                max_length=1024, 
                 num_return_sequences=1
             )[0]['generated_text']
             
