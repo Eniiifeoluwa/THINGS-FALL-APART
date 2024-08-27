@@ -3,8 +3,6 @@ import gdown
 import os
 import shutil
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, pipeline
-from langchain import LLMChain, PromptTemplate
-from langchain_huggingface import HuggingFacePipeline
 
 def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
@@ -23,14 +21,6 @@ else:
     model = GPT2LMHeadModel.from_pretrained(model_name)
 
     text_generation_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer)
-
-    prompt_template = PromptTemplate(
-        input_variables=["question"],
-        template="You are a knowledgeable historian providing a detailed explanation. Question: {question}\nAnswer:"
-    )
-
-    llm = HuggingFacePipeline(pipeline=text_generation_pipeline)
-    chain = LLMChain(llm=llm, prompt=prompt_template)
 
     st.title("GPT-2 Model for Chinua Achebe: THINGS FALL APART")
 
@@ -55,8 +45,13 @@ else:
         prompt = st.text_input("Enter your prompt:", key="conversation_prompt")
 
         if prompt:
-            result = chain.run(question=prompt)
-            answer = result.split("Answer:")[-1].strip()  # Extract answer from the result
+            result = text_generation_pipeline(
+                f"You are a knowledgeable historian providing a detailed explanation. Question: {prompt}\nAnswer:", 
+                max_length=150, 
+                num_return_sequences=1
+            )[0]['generated_text']
+            
+            answer = result.split("Answer:")[-1].strip()
             
             st.session_state.history.append({'question': prompt, 'answer': answer})
             st.write("**User😍:**", prompt)
