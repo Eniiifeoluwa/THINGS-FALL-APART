@@ -11,9 +11,8 @@ def download_model(model_url, zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
         shutil.unpack_archive(zip_filename, "chinua-gpt")
 
-model_url = "https://drive.google.com/uc?id=1bfBeR4C6kUfBvW6JMTTwsEoF3FEyJeCJ"
+model_url = "https://drive.google.com/uc?id=1VIo9pgFayPBn7Vbl75IneO1E_osenbqu"
 zip_filename = "chinua-gpt.zip"
-
 download_model(model_url, zip_filename)
 
 model_name = "chinua-gpt"
