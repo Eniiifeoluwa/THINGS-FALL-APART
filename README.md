@@ -26,7 +26,7 @@ To run the project locally, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-Eniiifeoluwa/things-fall-apart.git
+   git clone https://github.com/Eniiifeoluwa/things-fall-apart.git
    cd things-fall-apart
 2. **Install required packages and run the app**:
 ```bash
