@@ -8,6 +8,7 @@ def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
         shutil.unpack_archive(zip_filename, "chinua-gpt")
+
 model_url = "https://drive.google.com/uc?id=189z1YLRImemawg_uYjsJUawMldcePzUN"
 zip_filename = "chinua-gpt.zip"
 download_model(model_url, zip_filename)
@@ -45,12 +46,15 @@ else:
 
         if prompt:
             result = text_generation_pipeline(prompt, 
-                max_length=50,min_length=10,temperature=0.7,num_beams=5,num_return_sequences=1,eos_token_id=tokenizer.eos_token_id,
+                max_length=1024,
+                min_length=10,
+                temperature=0.7,
+                num_beams=5,
+                num_return_sequences=1,
+                eos_token_id=tokenizer.eos_token_id,
                 pad_token_id=tokenizer.pad_token_id,
                 no_repeat_ngram_size=2,
-                truncation=True,
-                max_length=1024, 
-                num_return_sequences=1
+                truncation=True
             )[0]['generated_text']
             
             answer = result.split("Answer:")[-1].strip()
