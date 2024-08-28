@@ -46,7 +46,7 @@ else:
 
         if prompt:
             result = text_generation_pipeline(prompt, 
-                max_length=512,
+                max_length=1024,
                 min_length=10,
                 temperature=0.7,
                 num_beams=5,
@@ -56,18 +56,18 @@ else:
                 no_repeat_ngram_size=2,
                 truncation=True
             )[0]['generated_text']
-            
-            # Process the result to stop at sentence-ending punctuation
-            sentences = result.split(". ")
-            if len(sentences) > 1:
-                result = sentences[0] + "."
-            else:
-                sentences = result.split("? ")
-                if len(sentences) > 1:
-                    result = sentences[0] + "?"
 
+            # Process the result to stop at sentence-ending punctuation
+            if '.' in result:
+                result = result.split('. ')[0] + '.'
+            elif '!' in result:
+                result = result.split('! ')[0] + '!'
+
+            # Ensure the result does not repeat the question
             answer = result.strip()
-            
+            if answer.startswith(prompt):
+                answer = answer[len(prompt):].strip()
+
             st.session_state.history.append({'question': prompt, 'answer': answer})
             st.write("**User😍:**", prompt)
             st.write("**Chinua's bot😎:**", answer)
