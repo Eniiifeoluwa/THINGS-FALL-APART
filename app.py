@@ -46,7 +46,7 @@ else:
 
         if prompt:
             result = text_generation_pipeline(prompt, 
-                max_length=1024,
+                max_length=512,
                 min_length=10,
                 temperature=0.7,
                 num_beams=5,
@@ -57,7 +57,16 @@ else:
                 truncation=True
             )[0]['generated_text']
             
-            answer = result.split("Answer:")[-1].strip()
+            # Process the result to stop at sentence-ending punctuation
+            sentences = result.split(". ")
+            if len(sentences) > 1:
+                result = sentences[0] + "."
+            else:
+                sentences = result.split("? ")
+                if len(sentences) > 1:
+                    result = sentences[0] + "?"
+
+            answer = result.strip()
             
             st.session_state.history.append({'question': prompt, 'answer': answer})
             st.write("**User😍:**", prompt)
