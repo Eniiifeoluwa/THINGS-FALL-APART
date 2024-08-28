@@ -48,7 +48,7 @@ else:
                 max_length=50,min_length=10,temperature=0.7,num_beams=5,num_return_sequences=1,eos_token_id=tokenizer.eos_token_id,
                 pad_token_id=tokenizer.pad_token_id,
                 no_repeat_ngram_size=2,
-                truncation=True
+                truncation=True,
                 max_length=1024, 
                 num_return_sequences=1
             )[0]['generated_text']
