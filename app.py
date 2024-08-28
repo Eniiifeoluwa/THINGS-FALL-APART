@@ -8,8 +8,7 @@ def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
         shutil.unpack_archive(zip_filename, "chinua-gpt")
-
-model_url = "https://drive.google.com/uc?id=1VIo9pgFayPBn7Vbl75IneO1E_osenbqu"
+model_url = "https://drive.google.com/uc?id=189z1YLRImemawg_uYjsJUawMldcePzUN"
 zip_filename = "chinua-gpt.zip"
 download_model(model_url, zip_filename)
 
