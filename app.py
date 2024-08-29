@@ -44,11 +44,11 @@ else:
 
         if prompt:
             result = text_generation_pipeline(prompt, 
-                max_length=512,
+                max_length=1024,
                 min_length=10,
-                temperature=7.,
-                num_beams=10,
-                top_p = 0.5,
+                temperature=0.6,
+                num_beams=6,
+                top_p = 0.7,
                 do_sample = False,
                 num_return_sequences=1,
                 eos_token_id=tokenizer.eos_token_id,
