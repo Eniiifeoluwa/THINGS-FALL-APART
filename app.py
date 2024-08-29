@@ -47,7 +47,7 @@ else:
             result = text_generation_pipeline(prompt, 
                 max_length=512,
                 min_length=10,
-                temperature=0.6,
+                temperature=0.2,
                 num_beams=1,
                 top_p = 0.2,
                 do_sample = False,
