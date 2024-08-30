@@ -44,10 +44,10 @@ else:
 
         if prompt:
             result = text_generation_pipeline(prompt, 
-                max_length=512,
-                min_length=100,
+                max_length=258,
+                min_length=50,
                 temperature=2.,
-                num_beams=20,
+                num_beams=5,
                 top_p = 0.3,
                 do_sample = False,
                 num_return_sequences=1,
