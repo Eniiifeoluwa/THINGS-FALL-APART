@@ -8,7 +8,7 @@ def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
         shutil.unpack_archive(zip_filename, "chinua-gpt")
-model_url = "https://drive.google.com/uc?id=14ct_xjodMsJU7RmUDrxAX3AtyrMZMfIk"
+model_url = "https://drive.google.com/uc?id=1bfBeR4C6kUfBvW6JMTTwsEoF3FEyJeCJ"
 zip_filename = "chinua-gpt.zip"
 download_model(model_url, zip_filename)
 model_name = "chinua-gpt"
@@ -44,11 +44,11 @@ else:
 
         if prompt:
             result = text_generation_pipeline(prompt, 
-                max_length=1024,
-                min_length=10,
-                temperature=0.6,
-                num_beams=6,
-                top_p = 0.7,
+                max_length=512,
+                min_length=100,
+                temperature=2.,
+                num_beams=20,
+                top_p = 0.3,
                 do_sample = False,
                 num_return_sequences=1,
                 eos_token_id=tokenizer.eos_token_id,
