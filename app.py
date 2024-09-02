@@ -3,15 +3,15 @@ import gdown
 import os
 import shutil
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, pipeline
-
+https://drive.google.com/file/d//view?usp=drive_link
 def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
-        shutil.unpack_archive(zip_filename, "chinua-gpt")
-model_url = "https://drive.google.com/uc?id=12aELaSyyAa-JdV55IHHYTELN1JcCtA5J"
-zip_filename = "chinua-gpt.zip"
+        shutil.unpack_archive(zip_filename, "model-gpt")
+model_url = "https://drive.google.com/uc?id=11NO3UZCsir_ZVxRoIWRlFFBWz7i1lIzK"
+zip_filename = "model-gpt.zip"
 download_model(model_url, zip_filename)
-model_name = "chinua-gpt"
+model_name = "model-gpt"
 if not os.path.exists(model_name):
     st.write(f"Model directory {model_name} does not exist. Please check the download and unzip process.")
 else:
