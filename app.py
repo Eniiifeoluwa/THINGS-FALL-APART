@@ -3,7 +3,6 @@ import gdown
 import os
 import shutil
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, pipeline
-https://drive.google.com/file/d//view?usp=drive_link
 def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
