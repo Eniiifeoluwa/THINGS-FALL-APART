@@ -7,7 +7,7 @@ def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
         shutil.unpack_archive(zip_filename, "model-gpt")
-model_url = "https://drive.google.com/uc?id=11NO3UZCsir_ZVxRoIWRlFFBWz7i1lIzK"
+model_url = "https://drive.google.com/uc?id=1d-PQHghZxwdNp49ECxCJ917MUMiKdgz7"
 zip_filename = "model-gpt.zip"
 download_model(model_url, zip_filename)
 model_name = "model-gpt"
