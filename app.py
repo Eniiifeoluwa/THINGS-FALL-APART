@@ -48,7 +48,7 @@ else:
                 temperature=4.,
                 num_beams=10,
                 top_p = 0.7,
-                repitition_penalty = 1.5,
+                repetition_penalty = 1.5,
                 early_stopping = True,
                 do_sample = False,
                 num_return_sequences=1,
