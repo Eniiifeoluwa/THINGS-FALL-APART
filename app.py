@@ -6,11 +6,11 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, pipeline
 def download_model(model_url, zip_filename):
     if not os.path.exists(zip_filename):
         gdown.download(model_url, zip_filename, quiet=False)
-        shutil.unpack_archive(zip_filename, "model-gpt")
+        shutil.unpack_archive(zip_filename, "cmodel-gpt")
 model_url = "https://drive.google.com/uc?id=1d-PQHghZxwdNp49ECxCJ917MUMiKdgz7"
-zip_filename = "model-gpt.zip"
+zip_filename = "cmodel-gpt.zip"
 download_model(model_url, zip_filename)
-model_name = "model-gpt"
+model_name = "cmodel-gpt"
 if not os.path.exists(model_name):
     st.write(f"Model directory {model_name} does not exist. Please check the download and unzip process.")
 else:
